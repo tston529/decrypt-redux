@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <set>
 #include <vector>
+#include <array>
 #include <string>
 #include "helper.hpp"
 
@@ -12,11 +13,13 @@ std::string patternify_word(const std::string& word)
     std::string ss;
     ss.reserve(word.size());
 
-    std::unordered_map<char, char> used_chars{};
-    used_chars.reserve(word.size());
+    const std::size_t sz = word.size();
+    char used_chars[sz];
+    char replacement_chars[sz];
     
-    int current_replacement_char = 65; // start with capital 'A'
-    for (int i = 0; i < word.size(); ++i)
+    int letters_replaced = 0;
+    int base_replacement_char = 65; // start with capital 'A'
+    for (int i = 0; i < sz; ++i)
     {
         const char current_char = word[i];
         if (!is_letter(current_char))
@@ -26,15 +29,30 @@ std::string patternify_word(const std::string& word)
         }
 
         const char lowercase_char = tolower(current_char);
-        if (const auto x = used_chars.find(lowercase_char); x != used_chars.end())
+
+
+        int found_idx;
+        bool found = false;
+        for (found_idx = 0; found_idx < letters_replaced; ++found_idx)
         {
-            ss += x->second;
+            if (used_chars[found_idx] == lowercase_char)
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (found)
+        {
+            ss += replacement_chars[found_idx];
         }
         else
         {
+            const int current_replacement_char = base_replacement_char + letters_replaced;
             ss += static_cast<char>(current_replacement_char);
-            used_chars[lowercase_char] = current_replacement_char;
-            ++current_replacement_char;
+            used_chars[letters_replaced] = lowercase_char;
+            replacement_chars[letters_replaced] = current_replacement_char;
+            ++letters_replaced;
         }
     }
 
@@ -52,8 +70,8 @@ auto create_dictionary(const std::string& filename) -> std::unordered_multimap<s
         std::string token;
         while (file >> token)
         {
-            token = strip_end_punctuation(token);
-            dictionary.insert({patternify_word(token), token});
+            const std::string stripped_token = strip_end_punctuation(token);
+            dictionary.insert({patternify_word(stripped_token), stripped_token});
         }
     }
 
@@ -65,8 +83,8 @@ auto create_dictionary(const std::set<std::string>& dict) -> std::unordered_mult
     std::unordered_multimap<std::string, std::string> dictionary{};
     for (const auto& token : dict)
     {
-        const std::string s = strip_end_punctuation(token);
-        dictionary.insert({s, token});
+        const std::string stripped_token = strip_end_punctuation(token);
+        dictionary.insert({patternify_word(stripped_token), token});
     }
 
     return dictionary;
@@ -93,8 +111,6 @@ int main()
     }
 
     std::cout << dictionary.size() << std::endl;
-
-    // return 0;
 
     const auto encoded_dictionary = create_dictionary(dictionary);
     std::cout << encoded_dictionary.size() << std::endl;
