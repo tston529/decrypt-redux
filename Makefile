@@ -1,6 +1,7 @@
 CC := g++
 CXXFLAGS := -I./include --std=c++20
-DEPS := include/helper.hpp include/frequency_setup.hpp
+SRC := src/*.cpp
+DEPS := include/*.hpp
 OBJS := freq.o
 EXE := build/freq
 TEST_EXE := build/run_tests
@@ -9,12 +10,12 @@ TEST_EXE := build/run_tests
 
 all: $(EXE) test
 
-$(EXE): freq.cpp $(DEPS)
+$(EXE): freq.cpp $(SRC) $(DEPS)
 	mkdir -p build
-	$(CC) $(CXXFLAGS) -o $(EXE) freq.cpp 
+	$(CC) $(CXXFLAGS) -o $(EXE) freq.cpp $(SRC)
 
-$(TEST_EXE): tests/tests.cpp $(DEPS)
-	$(CC) $(CXXFLAGS) -o $(TEST_EXE) tests/tests.cpp
+$(TEST_EXE): tests/tests.cpp $(SRC) $(DEPS)
+	$(CC) $(CXXFLAGS) -o $(TEST_EXE) tests/tests.cpp $(SRC)
 
 run: $(EXE)
 	$(EXE)

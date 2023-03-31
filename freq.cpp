@@ -5,8 +5,8 @@
 #include <vector>
 #include <array>
 #include <string>
-#include "helper.hpp"
-#include "frequency_setup.hpp"
+#include "include/helper.hpp"
+#include "include/setup.hpp"
 
 int rate_guess(
     const std::set<std::string> dictionary,
