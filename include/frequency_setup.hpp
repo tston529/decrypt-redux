@@ -57,6 +57,8 @@ std::string patternify_word(const std::string& word)
 
     return ss;
 }
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 /// @brief Creates a map of patterned-words to a list of words that
 ///        yielded that pattern. Example entry: {"ABBC" : ["book", "good", "poop"]}
@@ -80,6 +82,8 @@ auto create_dictionary(const std::string& filename) -> std::unordered_multimap<s
 
     return dictionary;
 }
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 /// @brief Creates a map of patterned-words to a list of words that
 ///        yielded that pattern. Example entry: {"ABBC" : ["book", "good", "poop"]}

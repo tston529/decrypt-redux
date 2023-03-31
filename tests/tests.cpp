@@ -14,6 +14,9 @@ struct Test
     std::function<bool()> test;
 };
 
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+
 /// @brief tests the patternify_word method
 /// @param input the string to be pattern-ified
 /// @param expected what we expect the patternify function to output
@@ -30,6 +33,25 @@ Test test_patternify_word(const std::string& input, const std::string& expected)
 
     return Test{patternTest};
 }
+
+/// @brief Tests the strip_end_punctuation method
+/// @param input the string to have its ending punctuation stripped
+/// @param expected what we expect the function to output
+/// @return a Test object containing the strip_end_punctuation test
+Test test_strip_punctuation(const std::string& input, const std::string& expected)
+{
+    const auto stripTest = [input, expected]() -> bool {
+        const std::string output = strip_end_punctuation(input);
+        std::cout << "input: " << input << "\n"
+              << "expected: " << expected << "\n"
+              << "modified string: " << output << "\n";
+        return output == expected;
+    };
+
+    return Test{stripTest};
+}
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 /// @brief runs a list of tests, returns whether they all passed
 /// @param tests the list of tests to be run
@@ -56,6 +78,8 @@ bool run_tests(const std::vector<Test>& tests)
 
     return passed;
 }
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 int main()
 {
@@ -67,6 +91,7 @@ int main()
     // Register tests
     std::vector<Test> tests{};
     tests.emplace_back(test_patternify_word("googlegoggles", "ABBACDABAACDE"));
+    tests.emplace_back(test_strip_punctuation("this is a test...()", "this is a test"));
     
     std::cerr << "Running tests..." << std::endl;
     if (!run_tests(tests))
