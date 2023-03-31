@@ -1,12 +1,12 @@
+#include "helper.hpp"
+#include "setup.hpp"
 #include <string>
 #include <unordered_map>
 #include <fstream>
 #include <set>
 
-/// @brief Creates a pattern based on letter frequency
-///        example: "stringify" yields "ABCDEFDGH"
-/// @param word the word to follow the pattern
-/// @return the word in the form of the pattern
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 std::string patternify_word(const std::string& word)
 {
     std::string ss;
@@ -57,13 +57,9 @@ std::string patternify_word(const std::string& word)
 
     return ss;
 }
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 
-/// @brief Creates a map of patterned-words to a list of words that
-///        yielded that pattern. Example entry: {"ABBC" : ["book", "good", "poop"]}
-/// @param filename name of the file from which to create the dictionary
-/// @return the populated multimap of patterns to list of origin words
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 auto create_dictionary(const std::string& filename) -> std::unordered_multimap<std::string, std::string> 
 {
     std::unordered_multimap<std::string, std::string> dictionary{};
@@ -82,13 +78,9 @@ auto create_dictionary(const std::string& filename) -> std::unordered_multimap<s
 
     return dictionary;
 }
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 
-/// @brief Creates a map of patterned-words to a list of words that
-///        yielded that pattern. Example entry: {"ABBC" : ["book", "good", "poop"]}
-/// @param dict a set of words to be patternified
-/// @return the populated multimap of patterns to list of origin words
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 auto create_dictionary(const std::set<std::string>& dict) -> std::unordered_multimap<std::string, std::string> 
 {
     std::unordered_multimap<std::string, std::string> dictionary{};
