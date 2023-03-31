@@ -1,9 +1,26 @@
-CC=g++
-compile: freq.cpp helper.hpp frequency_setup.hpp
-	$(CC) -o freq freq.cpp --std=c++20
+CC := g++
+CXXFLAGS := -I./include --std=c++20
+DEPS := include/helper.hpp include/frequency_setup.hpp
+OBJS := freq.o
+EXE := build/freq
+TEST_EXE := build/run_tests
 
-compile_tests: tests/tests.cpp frequency_setup.hpp helper.hpp
-	$(CC) -o tests/tests tests/tests.cpp --std=c++20 -I.
+.PHONY: all run test clean
 
-test: compile_tests
-	tests/tests
+all: $(EXE) test
+
+$(EXE): freq.cpp $(DEPS)
+	mkdir -p build
+	$(CC) $(CXXFLAGS) -o $(EXE) freq.cpp 
+
+$(TEST_EXE): tests/tests.cpp $(DEPS)
+	$(CC) $(CXXFLAGS) -o $(TEST_EXE) tests/tests.cpp
+
+run: $(EXE)
+	$(EXE)
+
+test: $(TEST_EXE)
+	$(TEST_EXE)
+
+clean:
+	rm -rf build/

@@ -8,7 +8,11 @@
 #include "helper.hpp"
 #include "frequency_setup.hpp"
 
-int rate_guess(const std::set<std::string> dictionary, const std::unordered_map<std::string, std::string>& cipher, const std::unordered_map<char, char>& current_codex)
+int rate_guess(
+    const std::set<std::string> dictionary,
+    const std::unordered_map<std::string, 
+    std::string>& cipher,
+    const std::unordered_map<char, char>& current_codex)
 {
     return 0;
 }
@@ -18,7 +22,7 @@ int main()
 {
     std::set<std::string> dictionary{};
 
-    std::ifstream file("dictionary.txt");
+    std::ifstream file("data_files/dictionary.txt");
     if (file.is_open())
     {
         std::string token;
@@ -32,7 +36,8 @@ int main()
 
     const auto encoded_dictionary = create_dictionary(dictionary);
     std::cout << encoded_dictionary.size() << std::endl;
-    /* const auto cipher = create_dictionary("english_cipher.txt");
+    
+    /* const auto cipher = create_dictionary("data_files/english_cipher.txt");
     std::cout << cipher.size() << std::endl;
 
     for (auto itr = cipher.begin(); itr != cipher.end(); ++itr)
