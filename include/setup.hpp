@@ -2,12 +2,6 @@
 #include <unordered_map>
 #include <set>
 
-/// @brief Creates a pattern based on letter frequency
-///        example: "stringify" yields "ABCDEFDGH"
-/// @param word the word to follow the pattern
-/// @return the word in the form of the pattern
-std::string patternify_word(const std::string& word);
-
 /// @brief Creates a map of patterned-words to a list of words that
 ///        yielded that pattern. Example entry: {"ABBC" : ["book", "good", "poop"]}
 /// @param filename name of the file from which to create the dictionary
