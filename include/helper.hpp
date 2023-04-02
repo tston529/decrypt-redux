@@ -18,6 +18,36 @@ public:
     {
         return encoding[tolower(real)-97];
     }
+
+
+    ///@brief      Adds letters to the cipher based on a partially decoded word and a real word
+    ///@param[in]  partially_decoded_word  The partially decoded word
+    ///@param[in]  real_word               The real word
+    ///@return     -1 if the words are mismatched
+    ///             1 ("true") if we successfully added new letters
+    ///             0 ("false") if no new letters were added
+    int add_word_to_cipher(const std::string& partially_decoded_word, const std::string& real_word)
+    {
+        if (partially_decoded_word.size() != real_word.size())
+        {
+            return -1;
+        }
+
+        int amt_new_chars_decoded = 0;
+        for (int i = 0; i < real_word.size(); ++i)
+        {
+            if (std::islower(partially_decoded_word[i]))
+            {
+                continue;
+            }
+
+            int idx = tolower(real_word[i])-97;
+            encoding[idx] = tolower(partially_decoded_word[i]);
+            ++amt_new_chars_decoded;
+        }
+
+        return amt_new_chars_decoded != real_word.size();
+    }
 };
 
 /// @brief returns if a character is an uppercase or lowercase letter
@@ -29,6 +59,16 @@ bool is_letter(const char c) noexcept;
 /// @param c the character to be verified
 /// @return true if a character is punctuation-adjacent, false otherwise
 bool is_punctuation(const char c) noexcept;
+
+///@brief      Converts a string to uppercase
+///@param[in]  s     the string to be converted
+///@return     a copy of the given string, converted to uppercase
+std::string to_upper(std::string s);
+
+///@brief      Converts a string to lowercase
+///@param[in]  s     the string to be converted
+///@return     a copy of the given string, converted to lowercase
+std::string to_lower(std::string s);
 
 /// @brief Creates a pattern based on letter frequency
 ///        example: "stringify" yields "ABCDEFDGH"
