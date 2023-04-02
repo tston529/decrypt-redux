@@ -81,6 +81,12 @@ std::string to_upper(std::string s);
 ///@return     a copy of the given string, converted to lowercase
 std::string to_lower(std::string s);
 
+/// @brief      Prints out current state of the cipher and uses it to decode
+///             the original phrase.
+/// @param[in]  encoded_word_list  The encoded word list
+/// @param[in]  cipher             The cipher
+void decode(const std::vector<std::string>& encoded_word_list, const Cipher& cipher);
+
 /// @brief Creates a pattern based on letter frequency
 ///        example: "stringify" yields "ABCDEFDGH"
 /// @param word the word to follow the pattern
