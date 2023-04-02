@@ -4,7 +4,7 @@ import sys
 
 #################################
 # copy your cipher here, if a value exists here it will override the default
-user_cipher = None
+user_cipher = ['i', 'r', 'e', 'a', 'l', 'y', 'd', 'o', 'n', 't', 'c', 'w', 'h', 'v', 'b', 'f', 'g', 'j', 'k', 'm', 'p', 'q', 's', 'u', 'x', 'z']
 #################################
 
 # generated with my create_cipher script with the keyphrase "george frank and estelle costanza"
@@ -24,6 +24,7 @@ else:
 	cipher = {alphabet[i] : default_cipher[i] for i in range(0, len(alphabet))}
 
 for char in phrase:
+	char = char.lower()
 	if char in cipher:
 		output += cipher[char]
 	else:

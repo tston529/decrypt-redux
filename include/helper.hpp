@@ -3,17 +3,23 @@
 #include <unordered_map>
 #include <vector>
 
+/// @brief      Holds a mapping of alphabet characters to their potential ciphered encoding counterparts.
 struct Cipher
 {
     const char real[26]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     char encoding[26]{};
 
-public:
+    /// @brief      Gets the decrypted character for the given ciphered character.
+    /// @param[in]  encoded  The encoded character
+    /// @return     The decrypted character
     [[nodiscard]] const char getReal(const char encoded) const noexcept
     {
         return real[tolower(encoded)-97];
     }
 
+    /// @brief      Gets the ciphered character for the given "real" character.
+    /// @param[in]  real  The real character
+    /// @return     The encoded character
     [[nodiscard]] const char getEncoded(const char real) const noexcept
     {
         return encoding[tolower(real)-97];
@@ -36,7 +42,12 @@ public:
         int amt_new_chars_decoded = 0;
         for (int i = 0; i < real_word.size(); ++i)
         {
-            if (std::islower(partially_decoded_word[i]))
+            // Ignore:
+            // - lowercase letters: a lowercase letter was already decoded, meaning a 1:1
+            //   match exists in the cipher
+            // - if we already have a 1:1 match for the word, don't overwrite it. Let the 
+            //   recursion stack handle that.
+            if (std::islower(partially_decoded_word[i]) || getEncoded(real_word[i]))
             {
                 continue;
             }
@@ -46,7 +57,7 @@ public:
             ++amt_new_chars_decoded;
         }
 
-        return amt_new_chars_decoded != real_word.size();
+        return amt_new_chars_decoded != 0;
     }
 };
 
@@ -87,13 +98,22 @@ std::string strip_end_punctuation(const std::string& word);
 /// @return The partially decoded word
 std::string partial_decode_word(std::string word, const Cipher& current_cipher);
 
-/// @brief Creates a list of words that might be matches to the given word
-///        based on the current cipher.
+/// @brief Creates a list of words that might be matches to the given word based on the current cipher.
 /// @param dictionary The collection of patternified words to their real word counterparts
 /// @param encrypted_word The word we want to find potential matches for
-/// @param urrent_cipher The current state of the cipher for decryption
+/// @param current_cipher The current state of the cipher for decryption
 /// @return The list of potential matches
 std::vector<std::string> find_list_of_partial_matches(
     const std::unordered_multimap<std::string, std::string> dictionary,
     const std::string& encrypted_word,
     const Cipher& current_cipher);
+
+/// @brief Creates a list of words that might be matches to the given wordbased on the current cipher.
+/// @param[in]  dictionary                The collection of patternified words to their real word counterparts
+/// @param[in]  patternified_word         The patternified word for which to search for potential matches
+/// @param[in]  partially_decrypted_word  The partially decrypted word
+/// @return The list of potential matches
+std::vector<std::string> find_list_of_partial_matches(
+    const std::unordered_multimap<std::string, std::string> dictionary,
+    const std::string& patternified_word,
+    const std::string& partially_decrypted_word);

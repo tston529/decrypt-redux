@@ -147,7 +147,8 @@ int main()
     Cipher halfCipher{.encoding={'t', '\0', 'y', '\0', 'l', '\0', 'r', '\0', 'm', '\0', 'o', '\0', 'u', '\0', 's', '\0', 'c', '\0', 'g', '\0', 'k', '\0', 'v', '\0', 'x', '\0'}};
     Cipher emptyCipher{.encoding={'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'}};
     Cipher partialCostanzaCipher{.encoding={'g', '\0', '\0', 'r', '\0', '\0', 'n', '\0', '\0', 's', '\0', 'l', 'c', '\0', 'b', 'h', '\0', '\0', 'm', '\0', '\0', 'u', '\0', '\0', 'x', 'y'}};
-    
+    Cipher partialZhangCipher{.encoding={'c', 'o', 'x', 'a', 'e', 'z', 'j', 's', 'v', '\0', '\0', 'g', '\0', 'f', 't', '\0', 'y', 'n', 'p', 'w', 'm', 'q', 'b', '\0', 'k', '\0'}};
+    Cipher idkCipher{.encoding={'\0', 'v', '\0', '\0', 'l', '\0', '\0', 'd', '\0', '\0', '\0', '\0', '\0', '\0', 'b', '\0', '\0', 'j', '\0', '\0', 'p', '\0', '\0', '\0', 'x', '\0'}};
     // Register tests
     std::vector<Test> tests{};
     tests.emplace_back(test_patternify_word("googlegoggles", "ABBACDABAACDE"));
@@ -157,6 +158,8 @@ int main()
     tests.emplace_back(test_partial_decode_word("IMPSGTKF", halfCipher, "IiPosauF"));
     // Original word: "alone"; encoded with the Costanza cipher
     tests.emplace_back(test_find_list_of_partial_matches("GLBZF", partialCostanzaCipher, {"alone", "aloud", "along"}));
+    tests.emplace_back(test_find_list_of_partial_matches("RNTRTPVWVTF", partialZhangCipher, {"proposition"}));
+    tests.emplace_back(test_find_list_of_partial_matches("EOBEBWIMLK", idkCipher, {"chocolates"}));
     
     std::cerr << "Running tests..." << std::endl;
     if (!run_tests(tests))
