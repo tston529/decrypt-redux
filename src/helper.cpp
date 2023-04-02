@@ -159,3 +159,37 @@ std::vector<std::string> find_list_of_partial_matches(
 
     return partial_matches;
 }
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+std::vector<std::string> find_list_of_partial_matches(
+    const std::unordered_multimap<std::string, std::string> dictionary,
+    const std::string& patternified_word,
+    const std::string& partially_decrypted_word)
+{
+    std::vector<std::string> partial_matches;
+    std::size_t strlen = partially_decrypted_word.size();
+    
+    for (auto itr = dictionary.begin(); itr != dictionary.end(); ++itr)
+    {
+        bool found = true;
+        if (itr->first == patternified_word)
+        {
+            for (std::size_t i = 0; i < strlen; ++i)
+            {
+                if (std::islower(partially_decrypted_word[i]) && itr->second[i] != partially_decrypted_word[i])
+                {
+                    found = false;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                partial_matches.push_back(itr->second);
+            }
+        }
+    }
+
+    return partial_matches;
+}

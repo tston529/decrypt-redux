@@ -188,6 +188,7 @@ approving
 approximate
 approximately
 April
+are
 area
 argue
 argument
@@ -428,6 +429,7 @@ broadcast
 broadly
 broken
 brother
+brought
 brown
 brush
 bubble
@@ -573,6 +575,7 @@ child
 chin
 chip
 chocolate
+chocolates
 choice
 choose
 chop
@@ -679,6 +682,7 @@ computer
 concentrate
 concentrate_on
 concentration
+conceived
 concept
 concern
 concerned
@@ -792,6 +796,7 @@ crash
 crazy
 cream
 create
+created
 creature
 credit
 credit_card
@@ -878,6 +883,7 @@ decorate
 decoration
 decorative
 decrease
+dedicated
 deep
 deeply
 defeat
@@ -1284,6 +1290,7 @@ fast
 fasten
 fat
 father
+fathers
 faucet
 fault
 favour
@@ -1385,6 +1392,7 @@ formally
 former
 formerly
 formula
+forth
 fortieth
 fortune
 forty
@@ -1510,6 +1518,7 @@ go_on doing
 go_out
 go_out with
 go_over
+gonna
 go_round
 go_through
 go_through with
@@ -1824,6 +1833,7 @@ iron
 irritate
 irritated
 irritating
+is
 island
 issue
 it
@@ -1937,11 +1947,13 @@ lend
 length
 less
 lesson
+lessons
 let
 let_down
 let_off
 letter
 level
+liberty
 library
 licence
 license
@@ -1968,7 +1980,7 @@ listen
 literature
 litre
 little
-live_1
+lived
 live_2
 lively
 live_on
@@ -2041,6 +2053,7 @@ make-up
 make_up_for
 male
 mall
+mama
 man
 manage
 management
@@ -2095,6 +2108,7 @@ melt
 member
 membership
 memory
+men
 mental
 mentally
 mention
@@ -2629,6 +2643,7 @@ properly
 property
 proportion
 proposal
+proposition
 propose
 prospect
 protect
@@ -3303,6 +3318,7 @@ substantially
 substitute
 succeed
 success
+succession
 successful
 successfully
 such
@@ -3426,7 +3442,6 @@ thank
 thanks
 thank_you
 that
-that
 the
 theatre
 their
@@ -3502,6 +3517,7 @@ today
 toe
 together
 toilet
+told
 tomato
 tomorrow
 ton
@@ -3612,6 +3628,7 @@ under
 underground
 underneath
 understand
+understood
 understanding
 underwater
 underwear
@@ -3857,6 +3874,7 @@ yard
 yawn
 yeah
 year
+years
 yellow
 yes
 yesterday
@@ -3864,6 +3882,7 @@ yet
 you
 young
 your
+you're
 yours
 yourself
 youth
