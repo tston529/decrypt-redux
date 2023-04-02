@@ -21,6 +21,24 @@ bool is_punctuation(const char c) noexcept
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
+std::string to_lower(std::string s)
+{
+    std::transform(s.begin(), s.end(), s.begin(), 
+                   [](unsigned char c){ return std::tolower(c); });
+    return s;
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+std::string to_upper(std::string s)
+{
+    std::transform(s.begin(), s.end(), s.begin(), 
+                   [](unsigned char c){ return std::toupper(c); });
+    return s;
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 std::string strip_end_punctuation(const std::string& word)
 {
     int count = 0;
@@ -96,10 +114,10 @@ std::string partial_decode_word(std::string word, const Cipher& current_cipher)
             const char replace = toupper(current_cipher.encoding[i]);
             const char replace_with = tolower(current_cipher.real[i]);
             std::replace(
-                word.begin(),
-                 word.end(),
-            replace,
-            replace_with);
+        word.begin(),
+        word.end(),
+        replace,
+        replace_with);
         }
     }
 

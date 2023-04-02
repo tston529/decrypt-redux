@@ -20,10 +20,10 @@ struct Test
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-/// @brief tests the patternify_word method
-/// @param input the string to be pattern-ified
-/// @param expected what we expect the patternify function to output
-/// @return a Test object containing the patternify_word test
+/// @brief      Tests the patternify_word method
+/// @param      input     The string to be pattern-ified
+/// @param      expected  What we expect the patternify function to output
+/// @return     A Test object containing the patternify_word test
 Test test_patternify_word(const std::string& input, const std::string& expected)
 {
     const auto patternTest = [input, expected]() -> bool {
@@ -37,10 +37,10 @@ Test test_patternify_word(const std::string& input, const std::string& expected)
     return Test{patternTest};
 }
 
-/// @brief Tests the strip_end_punctuation method
-/// @param input the string to have its ending punctuation stripped
-/// @param expected what we expect the function to output
-/// @return a Test object containing the strip_end_punctuation test
+/// @brief      Tests the strip_end_punctuation method
+/// @param[in]  input     the string to have its ending punctuation stripped
+/// @param[in]  expected  what we expect the function to output
+/// @return     A Test object containing the strip_end_punctuation test
 Test test_strip_punctuation(const std::string& input, const std::string& expected)
 {
     const auto stripTest = [input, expected]() -> bool {
@@ -54,8 +54,9 @@ Test test_strip_punctuation(const std::string& input, const std::string& expecte
     return Test{stripTest};
 }
 
-/// @brief Tests the createDictionary overload that turns a set of words into a patternified multimap
-/// @return a Test object containing the createDictionary test
+/// @brief      Tests the create_dictionary overload that turns a set of words
+///             into a patternified multimap
+/// @return     A Test object containing the create_dictionary test
 Test test_create_dict_from_set()
 {
     const auto createDictTest = []() -> bool {
@@ -75,6 +76,11 @@ Test test_create_dict_from_set()
     return Test{createDictTest};
 }
 
+/// @brief      Creates a test for the partial_decode_word function
+/// @param[in]  input          The input string
+/// @param[in]  partialCipher  The partial cipher
+/// @param[in]  expected       The value we expect the partial_decode_word
+/// @return     A Test object for the partial_decode_word function
 Test test_partial_decode_word(const std::string& input, const Cipher& partialCipher, const std::string& expected)
 {
     const auto createPartialDecodeTest = [input, expected, partialCipher]()-> bool {
@@ -88,6 +94,11 @@ Test test_partial_decode_word(const std::string& input, const Cipher& partialCip
     return Test{createPartialDecodeTest};
 }
 
+/// @brief      Creates a test for the find_list_of_partial_matches function.
+/// @param[in]  input          The input string
+/// @param[in]  partialCipher  The partial cipher
+/// @param[in]  expected       The value we expect the find_list_of_partial_matches function to return
+/// @return     A Test object for the find_list_of_partial_matches function
 Test test_find_list_of_partial_matches(const std::string& input, const Cipher& partialCipher, const std::vector<std::string>& expected)
 {
     const auto dict = create_dictionary("./data_files/english_3000.txt");
@@ -99,9 +110,9 @@ Test test_find_list_of_partial_matches(const std::string& input, const Cipher& p
     return Test{createFindListOfPartialMatchesTest};
 }
 
-/// @brief runs a list of tests, returns whether they all passed
-/// @param tests the list of tests to be run
-/// @return true of all tests passed, false otherwise
+/// @brief      Runs a list of tests, returns whether they all passed
+/// @param[in]  tests  the list of tests to be run
+/// @return     True if all tests passed, False otherwise
 bool run_tests(const std::vector<Test>& tests)
 {
     bool passed = true;

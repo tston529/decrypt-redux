@@ -1,5 +1,5 @@
 CC := g++
-CXXFLAGS := -I./include --std=c++20
+CXXFLAGS := -I./include --std=c++20 -g
 SRC := src/*.cpp
 DEPS := include/*.hpp
 OBJS := freq.o
