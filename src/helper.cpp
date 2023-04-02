@@ -52,6 +52,37 @@ std::string strip_end_punctuation(const std::string& word)
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
+void decode(const std::vector<std::string>& encoded_word_list, const Cipher& cipher)
+{
+    for (const char c : cipher.real)
+    {
+        std::cout << c << ' ';
+    }
+    std::cout << '\n';
+
+    for (const char c : cipher.encoding)
+    {
+        if (c)
+        {
+            std::cout << c << ' ';
+        }
+        else
+        {
+            std::cout << "- ";
+        }
+    }
+    std::cout << '\n';
+
+    for (const std::string& word : encoded_word_list)
+    {
+        std::cout << partial_decode_word(word, cipher) << " ";
+    }
+    std::cout << std::endl;
+
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 std::string patternify_word(const std::string& word)
 {
     std::string ss;
